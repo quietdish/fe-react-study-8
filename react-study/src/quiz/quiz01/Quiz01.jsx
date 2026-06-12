@@ -1,6 +1,5 @@
 import { useState } from "react";
-import './Quiz01.css';  //점찍어라 
-// import '.../index.css';
+import './Quiz01.css';  //점찍어라
 
 function Quiz01() {
 

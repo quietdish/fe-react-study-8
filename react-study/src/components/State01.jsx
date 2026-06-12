@@ -8,7 +8,7 @@ function State01() {
     // 재렌더링 발생 기준
     // state 변수 set 함수를 통해서 값이 변경 된 경우 -> 화면 재렌더링 (re-redering)
 
-    // const|let [변수명, set함수명] = userState(초기값);
+    // const|let [state변수명, state변수에값을세팅하는set함수명] = useState(초기값);
 
     let [count, setCount] = useState(0);
 
@@ -41,6 +41,8 @@ function State01() {
                 //count++;    //값 증가 O , 재렌더링 X -> set함수를통해서 값을 바꾼게 아니라서..
                 //setCount(count = count+1); XX
                 setCount(count+1);      //재렌더링 발생 조건
+                //count = count + 1;
+
                 setNum(num+1);      //재렌더링 발생 조건    -> 인근에 있는 재렌더링요소를 모아서 한번에 수행!
                 console.log(count);
             }}>count증가</button>

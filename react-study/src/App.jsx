@@ -19,6 +19,7 @@ import NewsBlog from './newsblog/NewsBlog'
 import NewsBlogcopy from './newsblog/NewsBlogcopy'
 import Quiz04 from './quiz/quiz04/Quiz04'
 import Quiz05 from './quiz/quiz05/Quiz05'
+import FoodMarket from './foodmarket/FoodMarket'
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
     // <NewsBlog />
     // <Quiz04 />
     // <Quiz05 />
-    <NewsBlogcopy />
+    // <NewsBlogcopy />
+    <FoodMarket />
   );
 }
 

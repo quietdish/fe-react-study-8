@@ -17,6 +17,7 @@ import Quiz03 from './quiz/quiz03/Quiz03'
 import NewsBlog from './newsblog/NewsBlog'
 import NewsBlogcopy from './newsblog/NewsBlogcopy'
 import Quiz04 from './quiz/quiz04/Quiz04'
+import Quiz05 from './quiz/quiz05/Quiz05'
 
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
     // <NewsBlog />
     // <NewsBlog/>
     <Quiz04 />
-
+    // <Quiz05 />
   );
 }
 

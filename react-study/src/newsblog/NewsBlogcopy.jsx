@@ -107,11 +107,32 @@ function NewsBlogcopy() {
                 <button onClick={() => {
                     //발행 버튼 클릭 -> input 입력한 값 state 변수에 저장된값 -> 배열에 등록/추가 처리
 
+                    // inputText -> 등록하려는 값
+
+                    inputText = inputText.trim();   //앞뒤공백제거
+                    //setInputText(inputText.trim())
+
+                    //추가하려는 값이 비어있으면? 진행X
+                    // if (inputText.trim() == '') {
+                    if(inputText == ''){
+                        alert('값을 입력해주세요');     //입력칸 초기화
+                        return;
+                    }
+
+
+
+
+
                     let temp = [...news];
                     temp.push(inputText);
                     setNews(temp);
 
                     setInputText('');   //입력된 값 제거
+
+                    //좋아요 갯수 처리 추가
+                    let temp2 = [ ...likeCountArr, 0];
+                    setLikeCountArr(temp2);
+                    likeCount.push(0);  //배열 뒤에 0 값 추가
 
                 }}>발행</button>
             </div>

@@ -28,8 +28,8 @@ function App() {
     // <Quiz03 />
     // <NewsBlog />
     // <NewsBlog/>
-    <Quiz04 />
-    // <Quiz05 />
+    // <Quiz04 />
+    <Quiz05 />
   );
 }
 

@@ -30,6 +30,7 @@ function Detail({ foods }) {
     // foods[foodIndex].title
     // foods[foodIndex].content
 
+    let navigate = useNavigate();
 
     // 해당하는 id의 상품이 없으면? 필터링
 

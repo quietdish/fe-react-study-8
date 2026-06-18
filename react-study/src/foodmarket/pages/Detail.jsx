@@ -100,7 +100,7 @@ function Detail({ foods }) {
 
         //clean up function
         return () => {
-            clearInterval();
+            clearInterval(interv);
         }
 
     }, [orderCount])

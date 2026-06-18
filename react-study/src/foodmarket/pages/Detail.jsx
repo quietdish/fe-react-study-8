@@ -137,7 +137,7 @@ function Detail({ foods }) {
             <div>
                 <h1>존재하지 않는 상품입니다.</h1>
                 <h2>잘못된 접근입니다.</h2>
-                <Button varient="info" onClick={() => {
+                <Button variant="info" onClick={() => {
                     navigate("/");
                 }}>홈으로 돌아가기</Button>
 
@@ -145,8 +145,157 @@ function Detail({ foods }) {
         )
     }
 
+    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ18일 15시ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 
-    // <div 
+    //스타일 적용
+
+    /*
+        조건에 따라서 스타일 적용
+        가격표시
+            1만원 이상 -> 빨강
+            1만원 미만 -> 파랑
+
+
+        1) js 객체
+
+        <p style={{color:'red', fontSize:'20px'}}>{food.price}</p>
+
+        const priceTextStyle = {
+        color: food.price >= 10000 ? 'red' : 'blue'
+    }
+        // { color:'red'}   {color:'blue'}
+
+        <p style={priceTextStyle}>{food.price}</p>
+        <p style={{color:'red', fontSize:'20px'}}>{food.price}</p>
+
+        2) js 함수 방식
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        3) css 클래스 연계 사용
+
+        //클래스이름 단일
+        <p className={food.price >= 10000 ? 'price-red' : 'price-blue'}>{food.price}</p>
+
+        //클래스 여러개
+        <p className={'text-strong ' + (food.price >= 10000 ? 'price-red' : 'price-blue')}>{food.price}</p>
+
+        // className=속성값에 들어가는 변수 형태로도 활용
+        const ......
+        <p className={food.price >= 10000 ? 'price-red' : 'price-blue'}>{food.price}</p>
+
+        //배열..........
+
+
+
+
+        //백틱문자 활용 ``````
+        <p className={`text-strong $ {...................................}>{food.price}</p>
+        <p className={`text-strong $ { (food.price >= 10000 ? 'price-red' : 'price-blue')}`}>{food.price}</p>
+
+        4) css class + useState ...................
+
+
+        let [viewStatus, setviewStatus] = useState('');
+
+        useEffect(() => {
+        // setviewStatus('end');
+
+        setTimeout(() => {
+            setviewStatus('end');
+        }, 500)
+
+    }, [])
+
+    <Container className={"start " + viewStatus}>
+
+    5) js 객체로 내부에서 스타일 정의 후 사용
+
+    const styles = {
+
+        redStyle: { color: 'red' },     //styles.redStyle   
+        
+        blueStyle: { color: 'blue' },   //styles.blueStyle   
+
+        fontBigBold: {
+            fontSize: '29px',
+            fontSize: '36px',
+            fontWeight: 'bold',
+        },
+
+        titleStyle: {
+            paddingTop: '30px',
+            fontSize: '40px',
+            fontWeight: 'bold'
+        }
+    }
+
+    <h4 style={styles.titleStyle}>{food.title}</h4>
+    <p style={styles.fondBigBold}>{food.content}</p>
+    
+
+    */
+
+
+    const styles = {
+
+        redStyle: { color: 'red' },     //styles.redStyle   
+        
+        blueStyle: { color: 'blue' },   //styles.blueStyle   
+
+        fontBigBold: {
+            fontSize: '29px',
+            fontSize: '36px',
+            fontWeight: 'bold',
+        },
+
+        titleStyle: {
+            paddingTop: '30px',
+            fontSize: '40px',
+            fontWeight: 'bold'
+        }
+    }
+
+
+
+
+    // 이 선언문이 주석 밖에 명시되어 있어야 합니다!
+    const priceTextStyle = {
+        color: food.price >= 10000 ? 'red' : 'blue'
+    };
+
+
+    const priceTextStyleFunc = (price) => {
+        if (price >= 10000) {
+            return { color: 'red' };
+        } else {
+            return { color: 'blue' };
+        }
+
+        //return {color: price >= 10000 ? 'red' : 'blue'};
+    }
+
+
+
+    const priceTextClassName = (food.price >= 10000 ? 'price-red' : 'price-blue');
+
+
+
+
+    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ18일 목요일ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+
     return (
         <Container className={"start " + viewStatus}>
             <Row>
@@ -155,14 +304,29 @@ function Detail({ foods }) {
                     <img src={import.meta.env.BASE_URL + food.imgPath} style={{ width: '100%' }} />
                 </Col>
                 <Col md={6} >
-                    <h4>{food.title}</h4>
+                    {/* <h4>{food.title}</h4> */}
+                    <h4 style={{ paddingTop: '20px' }}>{food.title}</h4>
+                    <h4 style={styles.fondBigBold}>{food.title}</h4>
                     <p>{food.content}</p>
-                    <p>{food.price}</p>
+                    {/* <p>{food.price}</p> */}
+                    <p style={styles.fondBigBold}>{food.content}</p>
+                    {/* <p style={priceTextStyle}>{food.price}</p> */}
+                    <p style={{ color: 'red', fontSize: '20px' }}>{food.price}</p>
+                    <p style={priceTextStyleFunc(food.price)}>{food.price}</p>
+
+
+                    <p className={food.price >= 10000 ? 'price-red' : 'price-blue'}>{food.price}</p>
+                    <p className={'text-strong ' + (food.price >= 10000 ? 'price-red' : 'price-blue')}>{food.price}</p>
+                    <p className={'text-strong ' + (food.price >= 10000 ? 'price-red' : 'price-blue')}>{food.price}</p>
+                    {/* <p className={''text-strong ' + (food.price >= 10000 ? 'price-red' : 'price-blue')].join()}>{food.price}</p> */}
+                    <p className={`text-strong $ { (food.price >= 10000 ? 'price-red' : 'price-blue')}`}>{food.price}</p>
+
+
 
                     <p>
                         {/* 1. 마이너스 방지 조건 추가 */}
-                        {/* <Button varient="dard">-</Button> */}
-                        <Button varient="dard" onClick={() => {
+                        {/* <Button variant="dark">-</Button> */}
+                        <Button variant="dark" onClick={() => {
                             if (orderCount > 0) {
                                 // -1씩 처리    0보다 작으면? -> 0      ////????
                                 // -1 처리 후 0 이상 되는가?
@@ -175,8 +339,8 @@ function Detail({ foods }) {
                         <span> {orderCount} </span>
 
                         {/* 2. 남은 재고(stockCount)까지만 증가하는 조건 추가 */}
-                        {/* <Button varient="dard">-</Button> */}
-                        <Button varient="dard" onClick={() => {
+                        {/* <Button variant="dark">-</Button> */}
+                        <Button variant="dark" onClick={() => {
 
                             //보유한 재고까지만...
                             // 재고보다 작은 수량인 경우 -> +1
@@ -192,9 +356,9 @@ function Detail({ foods }) {
 
                     {/* 3. 재고가 0개면 품절, 아니면 주문하기 버튼을 띄우는 삼항연산자 추가 */}
                     {food.stockCount === 0 ? (
-                        <Button varient="secondary" disabled="true">품절</Button>
+                        <Button variant="secondary" disabled={true}>품절</Button>
                     ) : (
-                        <Button varient="primary">주문하기</Button>
+                        <Button variant="primary">주문하기</Button>
                     )}
                 </Col>
             </Row>
@@ -224,7 +388,7 @@ function Detail({ foods }) {
                 </Modal.Footer>
             </Modal>
 
-        </Container>
+        </Container >
 
     )
 }

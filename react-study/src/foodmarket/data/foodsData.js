@@ -4,6 +4,7 @@ let foodsData = [
         title: "Cake",
         content: "당보충 초코 케이크",
         price: 8000,
+        stockCount: 10,
         imgPath: 'images/food1.jpg'
     },
 
@@ -12,6 +13,7 @@ let foodsData = [
         title: "French Fries",
         content: "정신에 좋은 감자튀김",
         price: 9000,
+        stockCount: 5,
         imgPath: 'images/food2.jpg'
     },
 
@@ -20,7 +22,9 @@ let foodsData = [
         title: "Hamburger",
         content: "완전식품 햄버거",
         price: 11000,
+        stockCount: 0,
         imgPath: 'images/food3.jpg'
+        
     }
 ];
 

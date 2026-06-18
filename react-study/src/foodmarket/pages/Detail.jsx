@@ -3,7 +3,7 @@ import { useParams } from "react-router";   ////15
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import './Detail.css';
-//import './Model.jsx';
+//import './Modal.jsx';
 
 function Detail({ foods }) {
 
@@ -160,20 +160,42 @@ function Detail({ foods }) {
                     <p>{food.price}</p>
 
                     <p>
-                        {/* <Button varient="dard">-</Button> */}
-                        <Button varient="dard" onClick={() => { setOrderCount(orderCount - 1) }}>-</Button>
-                        {/* <span> 0 </span> */}
-                        <span> {orderCount} </span>
+                        {/* 1. 마이너스 방지 조건 추가 */}
                         {/* <Button varient="dard">-</Button> */}
                         <Button varient="dard" onClick={() => {
-                            setOrderCount(orderCount + 1)
-                            console.log('onClick() : ' + orderCount);
+                            if (orderCount > 0) {
+                                // -1씩 처리    0보다 작으면? -> 0      ////????
+                                // -1 처리 후 0 이상 되는가?
+                                // 수량이 > 0 ?     0보다 커서 -1 해도 되는가?
+                                setOrderCount(orderCount - 1);
+                            }
+                        }}>-</Button>
+
+                        {/* <span> 0 </span> */}
+                        <span> {orderCount} </span>
+
+                        {/* 2. 남은 재고(stockCount)까지만 증가하는 조건 추가 */}
+                        {/* <Button varient="dard">-</Button> */}
+                        <Button varient="dard" onClick={() => {
+
+                            //보유한 재고까지만...
+                            // 재고보다 작은 수량인 경우 -> +1
+                            if (orderCount < food.stockCount) {
+                                setOrderCount(orderCount + 1)
+                                console.log('onClick() : ' + orderCount);
+                            } else {
+                                alert(`최대 주문 가능 수량은 ${food.stockCount}개입니다.`);
+                            }
                         }}>+</Button>
 
                     </p>
 
-                    <Button varient="primary">주문하기</Button>
-
+                    {/* 3. 재고가 0개면 품절, 아니면 주문하기 버튼을 띄우는 삼항연산자 추가 */}
+                    {food.stockCount === 0 ? (
+                        <Button varient="secondary" disabled="true">품절</Button>
+                    ) : (
+                        <Button varient="primary">주문하기</Button>
+                    )}
                 </Col>
             </Row>
 

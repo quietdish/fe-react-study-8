@@ -1,7 +1,9 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Modal } from "react-bootstrap";
 import { useParams } from "react-router";   ////15
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
+import './Detail.css';
+//import './Model.jsx';
 
 function Detail({ foods }) {
 
@@ -39,6 +41,11 @@ function Detail({ foods }) {
     useEffect(() => {
         console.log('useEffect 함수 실행 [orderCount] 의존성 배열')
         console.log('useEffect[orderCount] : ' + orderCount);
+
+        return () => {    //clean up function
+            console.log('useEffect[orderCount] -> return () 실행');
+        }
+
     }, [orderCount])  //의존성 배열에 존재하는 값 -> 참고
 
     useEffect(() => {
@@ -52,13 +59,51 @@ function Detail({ foods }) {
 
 
 
+    let [viewStatus, setviewStatus] = useState('');
+
+    useEffect(() => {
+        // setviewStatus('end');
+
+        setTimeout(() => {
+            setviewStatus('end');
+        }, 500)
+
+    }, [])
+
+    let [modalShow, setModalShow] = useState(true); //모달창 표시 여부 true/false
 
 
+    // Modal 창 자동으로
+    useEffect(() => {
+        //madalshow state변수 true -> false
 
+        setTimeout(() => {
+            setModalShow(false);
+        }, 2000)
+        //2초 후 자동 닫기
 
+    }, [])
 
+    useEffect(() => {
 
+        //setTimeout
+        //setInterval
+        //비동기방식
 
+        //clearTimeout
+        //clearInterval
+
+        // setInterval(() => {
+        const interv = setInterval(() => {
+            console.log('interval');
+        }, 1000)
+
+        //clean up function
+        return () => {
+            clearInterval();
+        }
+
+    }, [orderCount])
 
 
     //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -101,8 +146,9 @@ function Detail({ foods }) {
     }
 
 
+    // <div 
     return (
-        <Container>
+        <Container className={"start " + viewStatus}>
             <Row>
                 <Col md={6}>
                     {/* <img src={food.imgPath} /> */}
@@ -130,6 +176,31 @@ function Detail({ foods }) {
 
                 </Col>
             </Row>
+
+            <Modal
+                // {...props}
+                show={modalShow}
+                onHide={() => { setModalShow(false); }}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                        Modal heading
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h4>Food Good!!!</h4>
+                    <p>
+                        많이 많이 구매하세요!
+                    </p>
+                </Modal.Body>
+                <Modal.Footer>
+                    {/* <Button onClick={props.onHide}>Close</Button> */}
+                    <Button onClick={() => { setModalShow(false); }}>Close</Button>
+                </Modal.Footer>
+            </Modal>
 
         </Container>
 

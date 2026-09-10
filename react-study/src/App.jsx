@@ -34,8 +34,8 @@ function App() {
     // <NewsBlog />
     // <Quiz04 />
     // <Quiz05 />
-    // <NewsBlogcopy />
-    <FoodMarket />
+    <NewsBlogcopy />
+    // <FoodMarket />
     // <Quiz06 />
   );
 }
